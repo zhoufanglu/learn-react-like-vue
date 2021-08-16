@@ -7,11 +7,18 @@ export default class Child extends React.Component{
     return (
       <div className={'child panel'}>
         <h2>我是child子组件</h2>
-        <button onClick={()=>this.sendDataByChild()}>点击传递值给父元素</button>
+        <button onClick={(ref)=>this.sendDataByChild()}>点击传递值给父元素</button>
       </div>
     )
   }
   sendDataByChild() {
     this.props.getChildDataFn('我是子组件的值')
+  }
+  childFn() {
+    console.log('我是子组件的方法')
+  }
+  componentDidMount() {
+    console.log(21, this)
+    this.props.onRef(this)
   }
 }
