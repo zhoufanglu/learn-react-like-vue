@@ -1,23 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//import App from './App';
+import reportWebVitals from './reportWebVitals'
+
+import {NavLink, HashRouter as Router} from "react-router-dom" //BrowserRouter 是路由的History模式
+import {Suspense} from 'react'
+
+import {renderRoutes} from 'react-router-config'
+import routes from './router'
 
 //组件学习引入
-import Father from './study/father'
+//import Father from './study/father'
 //钟的组件
 //import Clock from './study/clock'
 //菜单
 //import Menu from './study/menu/menu'
 
+//事件学习
+//import DomEvent from './study/domEvent'
+
+//import feiyanDemo from './study/feiyanDemo/feiyanDemo'
+
+
 ReactDOM.render(
   <React.StrictMode>
-    {/* 注释格式 */}
     {/*<Clock/>*/}
     {/*<Menu/>*/}
-    <Father/>
-    <App />
+    {/*<Father/>*/}
+    {/*<DomEvent/>
+    <App />*/}
+      <Router>
+        <NavLink exact activeStyle={{color:'red'}} to="/">home</NavLink> |
+        <NavLink activeStyle={{color:'red'}} to="/feiyanDemo">feiyanDemo</NavLink> |
+        <Suspense fallback={<div>Lodaing</div>}>
+          {renderRoutes(routes)}
+        </Suspense>
+      </Router>
+    {/*<Route
+        exact
+        path="/"
+        component={App}
+      ></Route>
+      <Route
+        exact
+        path="/feiyanDemo"
+        component={feiyanDemo}
+      ></Route>*/}
   </React.StrictMode>,
   document.getElementById('root')
 );
