@@ -1,18 +1,17 @@
 import React from 'react'
-import data from '../data'
 import './feiyanTable.scss'
 export default class feiyanTable extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      list: [],
-      sort: 'desc',//asc desc
-      sortKey: ''
+      tableList: [],
+      sort: 'desc'
     }
   }
   render() {
+    //this.setState({'list': this.props.list})
     return (
-      <div className={'feiyan-table'}>
+      <div className={'feiyan-table'} >
         <ul className={'thead'}>
           <li>城市</li>
           <li>
@@ -28,7 +27,7 @@ export default class feiyanTable extends React.Component{
           <li>治愈人数</li>
         </ul>
         <div className={'tbody'}>
-          {this.state.list.map((i)=>{
+          {this.state.tableList.map((i)=>{
             return(
               <ul key={i.name}>
                 <li>{i.name}</li>
@@ -43,51 +42,20 @@ export default class feiyanTable extends React.Component{
     )
   }
   componentDidMount() {
-    this.getList()
   }
-  getList() {
-    //初始化数据
-    let list = data.data.FAutoforeignList
-    const completedList = Array.from(list,i => {
-      let obj = {
-        ...i,
-        ...{
-          confirmFormat: this.numberFormat(i.confirm),
-          deadFormat: this.numberFormat(i.dead),
-          healFormat: this.numberFormat(i.heal),
-        }
-      }
-      return obj
-    })
-    console.log(54, completedList)
-    this.setState({'list': completedList})
-    setTimeout(()=>{
-      console.log(this.state)
-    })
-  }
-  numberFormat(value) {
-    let param = {};
-    let k = 10000,
-      sizes = ['', '万', '亿', '万亿'],
-      i;
-    if(value < k){
-      param.value =value
-      param.unit=''
-    }else{
-      i = Math.floor(Math.log(value) / Math.log(k));
-
-      param.value = ((value / Math.pow(k, i))).toFixed(2);
-      param.unit = sizes[i];
+  //组件更新完毕，props变化 会跟着触发
+  componentDidUpdate(prevProps, prevState,) {
+    if(JSON.stringify(this.props.list) !== JSON.stringify(prevProps.list)){
+      this.setState({tableList: this.props.list})
     }
-    return param.value + param.unit
   }
   tableSort(sort, sortKey) {
     sort = sort === 'asc'? 'desc':'asc'
     this.setState({sort: sort, sortKey:sortKey})
 
-    const sortArr = this.state.list.sort((a,b)=>{
+    const sortArr = this.state.tableList.sort((a,b)=>{
       return sort === 'asc' ? a.confirm - b.confirm : b.confirm - a.confirm
     })
-    this.setState({list: sortArr})
+    this.setState({tableList: sortArr})
   }
 }

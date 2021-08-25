@@ -31,8 +31,16 @@ ReactDOM.render(
     {/*<DomEvent/>
     <App />*/}
       <Router>
-        <NavLink exact activeStyle={{color:'red'}} to="/">home</NavLink> |
+        {
+          routes.map(i=>{
+            return (
+              <NavLink exact activeStyle={{color:'red'}} to={i.path}>{i.name}|</NavLink>
+            )
+          })
+        }
+        {/*<NavLink exact activeStyle={{color:'red'}} to="/">home</NavLink> |
         <NavLink activeStyle={{color:'red'}} to="/feiyanDemo">feiyanDemo</NavLink> |
+        <NavLink activeStyle={{color:'red'}} to="/fatherChild">fatherChild</NavLink> |*/}
         <Suspense fallback={<div>Lodaing</div>}>
           {renderRoutes(routes)}
         </Suspense>
