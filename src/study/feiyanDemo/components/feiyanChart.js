@@ -9,6 +9,7 @@ const chartStyle = {
 export default class feiyanChart extends React.Component{
 /*  constructor(props) {
     super(props)
+    console.log('constructor钩子函数')
   }*/
   render() {
     return (

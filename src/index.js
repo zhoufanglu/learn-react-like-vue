@@ -34,7 +34,7 @@ ReactDOM.render(
         {
           routes.map(i=>{
             return (
-              <NavLink exact activeStyle={{color:'red'}} to={i.path}>{i.name}|</NavLink>
+              <NavLink key={i.name} exact activeStyle={{color:'red'}} to={i.path}>{i.name}|</NavLink>
             )
           })
         }
