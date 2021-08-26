@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.21.1",
     "customize-cra": "^1.0.0",
     "echarts": "^5.1.2",
     "node-sass": "^6.0.1",

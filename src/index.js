@@ -10,6 +10,8 @@ import {Suspense} from 'react'
 import {renderRoutes} from 'react-router-config'
 import routes from './router'
 
+import'./request/http'
+
 //组件学习引入
 //import Father from './study/father'
 //钟的组件
@@ -34,7 +36,7 @@ ReactDOM.render(
         {
           routes.map(i=>{
             return (
-              <NavLink key={i.name} exact activeStyle={{color:'red'}} to={i.path}>{i.name}|</NavLink>
+              <NavLink key={i.name} exact activeStyle={{color:'red'}} to={i.path}>{i.name}&nbsp;&nbsp;&nbsp;&nbsp;|</NavLink>
             )
           })
         }
