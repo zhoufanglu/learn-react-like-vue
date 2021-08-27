@@ -4,7 +4,7 @@ import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals'
 
-import {NavLink, HashRouter as Router} from "react-router-dom" //BrowserRouter 是路由的History模式
+import {NavLink,Switch, HashRouter as Router} from "react-router-dom" //BrowserRouter 是路由的History模式
 import {Suspense} from 'react'
 
 import {renderRoutes} from 'react-router-config'
@@ -34,17 +34,25 @@ ReactDOM.render(
     <App />*/}
       <Router>
         {
+         /* <div>
+            <NavLink activeStyle={{color:'red'}} to={'/routerStudy'}>&nbsp;&nbsp;&nbsp;&nbsp;study ROuter|</NavLink>
+            <NavLink activeStyle={{color:'red'}} to={'/routerStudy/child1'}>&nbsp;&nbsp;&nbsp;&nbsp;study ROuter-child1</NavLink>
+          </div>*/
           routes.map(i=>{
             return (
-              <NavLink key={i.name} exact activeStyle={{color:'red'}} to={i.path}>{i.name}&nbsp;&nbsp;&nbsp;&nbsp;|</NavLink>
+              <span key={i.name}>
+                <NavLink exact activeStyle={{color:'red'}} to={i.path}>{i.name}&nbsp;&nbsp;&nbsp;&nbsp;|</NavLink>
+              </span>
             )
           })
         }
         {/*<NavLink exact activeStyle={{color:'red'}} to="/">home</NavLink> |
         <NavLink activeStyle={{color:'red'}} to="/feiyanDemo">feiyanDemo</NavLink> |
         <NavLink activeStyle={{color:'red'}} to="/fatherChild">fatherChild</NavLink> |*/}
-        <Suspense fallback={<div>Lodaing</div>}>
-          {renderRoutes(routes)}
+        <Suspense fallback={<div>loading</div>}>
+          <Switch>
+            {renderRoutes(routes)}
+          </Switch>
         </Suspense>
       </Router>
     {/*<Route
