@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import './test.scss'
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <button className='p-red'>aaaa</button>

@@ -1,4 +1,5 @@
 import {lazy} from 'react'
+import {Redirect} from 'react-router-dom'
 
 const Home = lazy(()=> import ('../App'))
 const feiyanDemo = lazy(()=> import ('../study/feiyanDemo/feiyanDemo'))
@@ -15,11 +16,27 @@ const routerStudy = lazy(()=> import ('@/study/routerStudy/routerStudy'))
 //编写基本的路由路线，path为路径，component为对应渲染的组件，exact属性决定是否精准匹配
 const routes = [
   {
-    path: "/",
+    path: "/home",
     name: 'Home',
     component: Home,
     exact: true,
   },
+  {
+    path: "/",
+    name: 'HomeRedirect',
+    exact: true,
+    render(){
+      return  <Redirect to="/home" />
+    },
+  },
+  /*{
+    path: "/",
+    name: 'HomeRedirect',
+    exact: true,
+    render(){
+      return  <Redirect to="/home" />
+    },
+  },*/
   {
     path: "/feiyanDemo",
     name: 'feiyanDemo',
@@ -54,18 +71,25 @@ const routes = [
     path: "/routerStudy",
     component: routerStudy,
     name: '路由学习',
-    redirect: '/routerStudy/child1',
-    //exact: true,
     children: [
+      {
+        path: "/routerStudy",
+        //component: routerStudy,
+        name: '路由学习',
+        exact: true,
+        render(){
+          return  <Redirect to="/routerStudy/child1" />
+        },
+      },
       {
         path: "/routerStudy/child1",
         component: child1,
-        name: '子1'
+        name: '子1',
       },
       {
         path: "/routerStudy/child2",
         component: child2,
-        name: '子2'
+        name: '子2',
       },
     ]
   },

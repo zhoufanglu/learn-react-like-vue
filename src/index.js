@@ -4,13 +4,13 @@ import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals'
 
-import {NavLink,Switch, HashRouter as Router} from "react-router-dom" //BrowserRouter 是路由的History模式
+import {NavLink, HashRouter as Router, Switch} from "react-router-dom" //BrowserRouter 是路由的History模式
 import {Suspense} from 'react'
 
 import {renderRoutes} from 'react-router-config'
 import routes from './router'
 
-import'./request/http'
+import './request/http'
 
 //组件学习引入
 //import Father from './study/father'
@@ -24,47 +24,50 @@ import'./request/http'
 
 //import feiyanDemo from './study/feiyanDemo/feiyanDemo'
 
-
 ReactDOM.render(
   <React.StrictMode>
-    {/*<Clock/>*/}
-    {/*<Menu/>*/}
-    {/*<Father/>*/}
-    {/*<DomEvent/>
-    <App />*/}
-      <Router>
-        {
-         /* <div>
-            <NavLink activeStyle={{color:'red'}} to={'/routerStudy'}>&nbsp;&nbsp;&nbsp;&nbsp;study ROuter|</NavLink>
-            <NavLink activeStyle={{color:'red'}} to={'/routerStudy/child1'}>&nbsp;&nbsp;&nbsp;&nbsp;study ROuter-child1</NavLink>
-          </div>*/
-          routes.map(i=>{
-            return (
-              <span key={i.name}>
-                <NavLink exact activeStyle={{color:'red'}} to={i.path}>{i.name}&nbsp;&nbsp;&nbsp;&nbsp;|</NavLink>
-              </span>
-            )
-          })
-        }
-        {/*<NavLink exact activeStyle={{color:'red'}} to="/">home</NavLink> |
-        <NavLink activeStyle={{color:'red'}} to="/feiyanDemo">feiyanDemo</NavLink> |
-        <NavLink activeStyle={{color:'red'}} to="/fatherChild">fatherChild</NavLink> |*/}
+    {/**只能有一个Router根节点  Router -S**/}
+    <Router>
+      <>
+        {/*路由导航*/}
+        <div className='nav' style={{border: 'solid 1px red', padding: '20px'}}>
+          {
+            routes.map(i => {
+              return (
+                <span key={i.name}>
+                  <NavLink exact activeStyle={{color: 'red'}} to={i.path}>{i.name}&nbsp;&nbsp;&nbsp;&nbsp;|</NavLink>
+                </span>
+              )
+            })
+          }
+        </div>
+
+        {/*渲染路由*/}
         <Suspense fallback={<div>loading</div>}>
           <Switch>
             {renderRoutes(routes)}
           </Switch>
         </Suspense>
-      </Router>
-    {/*<Route
-        exact
-        path="/"
-        component={App}
-      ></Route>
-      <Route
-        exact
-        path="/feiyanDemo"
-        component={feiyanDemo}
-      ></Route>*/}
+
+
+        {/*<div className='nav' style={{border: 'solid 1px red', padding: '20px'}}>
+            <NavLink activeStyle={{color:'red'}} to='/routerStudy'>我是LinkStudy</NavLink>
+            <NavLink activeStyle={{color:'red'}} to={{pathname: '/home', search:"username=admin", state: {msg:'hello'}}}>我是LinkHome</NavLink>
+          </div>
+          <Suspense fallback={<div>loading</div>}>
+            <Switch>
+              {renderRoutes(routes)}
+              原生路由render test
+              <Route path='/routerStudy' component={routerStudy}>
+              </Route>
+              <Route path='/routerStudy'  component={routerStudy}></Route>
+              <Route path='/home' exact component={home}/>
+              <Redirect from='/' to='/home'/>
+            </Switch>
+          </Suspense>*/}
+      </>
+    </Router>
+    {/**只能有一个Router根节点  Router -E**/}
   </React.StrictMode>,
   document.getElementById('root')
 );
