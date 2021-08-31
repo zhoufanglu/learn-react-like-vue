@@ -6,8 +6,17 @@ class child1 extends React.Component{
     return (
       <div>
         <h1>child1</h1>
+        <button onClick={this.goChild2}>go Child2</button>
       </div>
     )
+  }
+  goChild2 =()=> {
+    const location = {
+      pathname: '/routerStudy/child2',
+      state: { name: 'lfz' }, //类似vue中的params传参
+      search:"username=admin", //类似vue中的query传参
+    }
+    this.props.history.push(location)
   }
   componentDidMount() {
     console.log('child1')

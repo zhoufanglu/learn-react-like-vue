@@ -6,10 +6,18 @@ class child2 extends React.Component{
     return (
       <div>
         <h1>child2</h1>
+        <span>接受到的值：{this.props.location.search}</span>
+        <button onClick={this.back}>返回</button>
       </div>
     )
   }
   /**********************事件***********************/
+  back = ()=>{
+    this.props.history.go(-1)
+  }
+  componentDidMount() {
+    console.log(18, this.props.location.search)
+  }
 }
 
 export default child2
