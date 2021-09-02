@@ -1,3 +1,8 @@
+.active{
+  color: $theme;
+  border: solid 1px red;
+}
+
 .panel{
   padding: 20px;
   margin: 20px;
@@ -12,4 +17,25 @@
   border: solid blueviolet 1px;
   padding: 10px;
   margin: 10px;
+}
+
+.redux{
+  .data-mark{
+    .btn-row{
+      @include vertical-center;
+      justify-content: flex-start;
+    }
+    .add-panel{
+
+    }
+    .list-panel{
+      ul{
+        li{
+          margin: 6px;
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

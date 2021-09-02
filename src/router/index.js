@@ -11,6 +11,8 @@ const routerStudy = lazy(()=> import ('@/study/routerStudy/routerStudy'))
   //子路由
   const child1 = lazy(()=> import ('@/study/routerStudy/child/child1'))
   const child2 = lazy(()=> import ('@/study/routerStudy/child/child2'))
+//reduce
+const redux = lazy(()=> import ('@/study/redux/redux'))
 
 
 //编写基本的路由路线，path为路径，component为对应渲染的组件，exact属性决定是否精准匹配
@@ -92,6 +94,12 @@ const routes = [
         name: '子2',
       },
     ]
+  },
+  {
+    path: "/redux",
+    component: redux,
+    name: 'redux学习',
+    exact: true,
   },
 ];
 
