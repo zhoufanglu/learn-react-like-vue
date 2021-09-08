@@ -2,6 +2,7 @@ import React from 'react'
 import './study.scss'
 
 import Child from './child'
+import {Button, DatePicker} from 'antd'
 
 export default class Father extends React.Component{
   constructor(props) {
@@ -15,6 +16,8 @@ export default class Father extends React.Component{
     const fatherValue = '我是父组件的值'
     return (
       <div className={'father panel'}>
+        <DatePicker/>
+        <Button type='primary'>ant btn</Button>
         <h2>我是father父组件</h2>
         <button onClick={()=>this.triggerChildFn()}>触发子组件方法</button>
         {/*<button onClick={this.test.bind(this)}>test</button>*/}

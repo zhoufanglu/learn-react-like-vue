@@ -25,7 +25,7 @@ import './request/http'
 //import feiyanDemo from './study/feiyanDemo/feiyanDemo'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div>
     {/**只能有一个Router根节点  Router -S**/}
     <Router>
       <>
@@ -68,7 +68,7 @@ ReactDOM.render(
       </>
     </Router>
     {/**只能有一个Router根节点  Router -E**/}
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root')
 );
 

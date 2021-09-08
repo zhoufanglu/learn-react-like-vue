@@ -14,6 +14,11 @@ const routerStudy = lazy(()=> import ('@/study/routerStudy/routerStudy'))
 //reduce
 const redux = lazy(()=> import ('@/study/redux/redux'))
 
+//分享模块
+const shareBefore = lazy(()=> import ('@/share/shareBefore'))
+const share = lazy(()=> import ('@/share/index'))
+
+//console.log(21, window.location.hash)
 
 //编写基本的路由路线，path为路径，component为对应渲染的组件，exact属性决定是否精准匹配
 const routes = [
@@ -101,7 +106,18 @@ const routes = [
     name: 'redux学习',
     exact: true,
   },
-];
+  {
+    path: "/shareBefore",
+    component: shareBefore,
+    name: 'shareBefore',
+    exact: true,
+  },
+  {
+    path: "/share",
+    component: share,
+    name: 'share',
+    exact: true,
+  }];
 
 //将路由表数组导出
 export default routes
