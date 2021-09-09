@@ -13,7 +13,8 @@ class sharePage extends React.Component{
       value: '',
       country: 'China',
       isModalVisible: false,
-      shareBtnLoading: false
+      shareBtnLoading: false,
+      description: ''
     }
   }
   render() {
@@ -33,9 +34,20 @@ class sharePage extends React.Component{
                  }}
                  defaultValue={''}
                  placeholder="only support thunder" />
+
+          {/**description--S**/}
+          <span style={{margin: '0 10px'}}>描述:</span>
+          <Input style={{ minWidth: 300 }}
+                 onChange={(e) => {
+                   this.setState({description: e.target.value})
+                 }}
+                 defaultValue={''}
+                 placeholder="建议使用英文/拼音、进行描述"
+          />
+          {/**description--E**/}
+
           <Button type='primary' loading={this.state.shareBtnLoading} onClick={this.addLink}>share</Button>
         </div>
-
         <Button style={{marginTop: '30px'}} bordered='false' onClick={this.seeLinks} type='primary'>see share content</Button>
         <Card title="注意事项：" style={{ width: 400, marginTop: 100 }}>
           <p>此项目为<strong>技术交流群</strong>特意制作。</p>
@@ -68,10 +80,10 @@ class sharePage extends React.Component{
     const reg = /magnet\:\?xt=urn\:btih:.+/
     //const path = 'magnet:?xt=urn:btih:190AC8F7788C7511E6C99F56D7453101B605460D&dn=stars303_ch'
     //magnet:?xt=urn:btih:f208385bdc4366270cbdb2a91fabd4167a19aa54&dn=[G-Area] 20131224 Perfect-G 452 Anju　(北川杏樹)  
-    const {value, country} = this.state
-    this.setState({shareBtnLoading: true})
+    const {value, country, description} = this.state
     if(reg.test(value)){
-      const {data} = await api.share.addLink({country, value})
+      this.setState({shareBtnLoading: true})
+      const {data} = await api.share.addLink({country, value, description})
       if(data.code === -1){
         message.error('分享内容已经存在，请换地址')
       }else{
@@ -127,6 +139,11 @@ class ModalTable extends React.Component{
           title: '地址',
           dataIndex: 'value',
           key: 'value',
+        },
+        {
+          title: '描述',
+          dataIndex: 'descript',
+          key: 'descript',
         },
         {
           title: '时间',

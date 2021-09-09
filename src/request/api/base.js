@@ -3,7 +3,12 @@
  */
 
 //接口统一使用dynamicUrl变量
-const dynamicUrl = 'http://127.0.0.1:7002'// 接口ip
+let dynamicUrl = 'http://127.0.0.1:7002'// 接口ip
+
+console.log(8, process.env.NODE_ENV)
+if(process.env.NODE_ENV !== 'development'){
+  dynamicUrl = 'http://110.40.136.102:7001'
+}
 
 //console.log('api-path', process.env.VUE_APP_SERVER_URL)
 

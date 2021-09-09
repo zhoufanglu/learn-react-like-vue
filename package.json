@@ -48,5 +48,6 @@
     "redux": "^4.1.1",
     "sass-loader": "^12.1.0",
     "sass-resources-loader": "^2.2.4"
-  }
+  },
+  "homepage": "/share/frontend/"
 }
