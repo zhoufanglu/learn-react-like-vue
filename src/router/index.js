@@ -1,22 +1,25 @@
 import {lazy} from 'react'
 import {Redirect} from 'react-router-dom'
 
-const Home = lazy(()=> import ('../App'))
-const feiyanDemo = lazy(()=> import ('../study/feiyanDemo/feiyanDemo'))
-const father = lazy(()=> import ('@/study/father'))
-const lifeCycle = lazy(()=> import ('@/study/lifeCycle'))
-const axiosTest = lazy(()=> import ('@/study/axiosTest'))
-const slotStudy = lazy(()=> import ('@/study/slot/slotStudy'))
-const routerStudy = lazy(()=> import ('@/study/routerStudy/routerStudy'))
-  //子路由
-  const child1 = lazy(()=> import ('@/study/routerStudy/child/child1'))
-  const child2 = lazy(()=> import ('@/study/routerStudy/child/child2'))
+const Home = lazy(() => import ('../App'))
+const feiyanDemo = lazy(() => import ('../study/feiyanDemo/feiyanDemo'))
+const father = lazy(() => import ('@/study/father'))
+const lifeCycle = lazy(() => import ('@/study/lifeCycle'))
+const axiosTest = lazy(() => import ('@/study/axiosTest'))
+const slotStudy = lazy(() => import ('@/study/slot/slotStudy'))
+const routerStudy = lazy(() => import ('@/study/routerStudy/routerStudy'))
+//子路由
+const child1 = lazy(() => import ('@/study/routerStudy/child/child1'))
+const child2 = lazy(() => import ('@/study/routerStudy/child/child2'))
 //reduce
-const redux = lazy(()=> import ('@/study/redux/redux'))
+const redux = lazy(() => import ('@/study/redux/redux'))
 
 //分享模块
-const shareBefore = lazy(()=> import ('@/share/shareBefore'))
-const share = lazy(()=> import ('@/share/index'))
+const shareBefore = lazy(() => import ('@/share/shareBefore'))
+const share = lazy(() => import ('@/share/index'))
+
+//hooks学习
+const hooks = lazy(() => import ('@/study/hooks/hooks'))
 
 //console.log(21, window.location.hash)
 
@@ -32,8 +35,8 @@ const routes = [
     path: "/",
     name: 'HomeRedirect',
     exact: true,
-    render(){
-      return  <Redirect to="/home" />
+    render() {
+      return <Redirect to="/home"/>
     },
   },
   /*{
@@ -84,8 +87,8 @@ const routes = [
         //component: routerStudy,
         name: '路由学习',
         exact: true,
-        render(){
-          return  <Redirect to="/routerStudy/child1" />
+        render() {
+          return <Redirect to="/routerStudy/child1"/>
         },
       },
       {
@@ -117,7 +120,15 @@ const routes = [
     component: share,
     name: 'share',
     exact: true,
-  }];
+  },
+  {
+    path: "/hooks",
+    component: hooks,
+    name: 'hooks',
+    exact: true,
+  }
+
+];
 
 //将路由表数组导出
 export default routes

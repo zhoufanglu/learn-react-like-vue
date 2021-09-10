@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Input, Select, message, Modal, Card, Table, Tag} from 'antd'
+import {Button, Input, Select, message, Modal, Card, Table} from 'antd'
 import './share.scss'
 import api from '@/request/api'
 
@@ -77,7 +77,7 @@ class sharePage extends React.Component{
   addLink= async ()=> {
     ///magnet\:\?xt=urn\:btih:.+/
     ///thunder:\/\/[^\=]+?==/
-    const reg = /magnet\:\?xt=urn\:btih:.+/
+    const reg = /magnet:\?xt=urn:btih:.+/
     //const path = 'magnet:?xt=urn:btih:190AC8F7788C7511E6C99F56D7453101B605460D&dn=stars303_ch'
     //magnet:?xt=urn:btih:f208385bdc4366270cbdb2a91fabd4167a19aa54&dn=[G-Area] 20131224 Perfect-G 452 Anju　(北川杏樹)  
     const {value, country, description} = this.state
